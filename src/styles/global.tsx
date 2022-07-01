@@ -6,10 +6,9 @@ const GlobalStyle = () => {
     <Global
         styles={css`
           ${reset}
-
           *, *::before, *::after {
             box-sizing: border-box;
-            font-family: 'Nanum Gothic', sans-serif;
+            font-family: 'Nanum Gothic', sans-serif; 
           }
         `} 
       />

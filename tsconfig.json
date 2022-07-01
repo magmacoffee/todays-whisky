@@ -14,7 +14,8 @@
     "paths": {
       "src/*": ["./src/*"],
       "public/*": ["./public/*"],
-    }
+    },
+    "types": ["node", "@emotion/core"],
   },
-  "include": ["src",]
+  "include": ["src", "src/custom.d.ts"]
 }

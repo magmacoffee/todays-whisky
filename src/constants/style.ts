@@ -1,0 +1,30 @@
+const COLOR = {
+  WHITE: '#f5f5f5cc',
+  BLACK: '#141414',
+  NAV_NORMAL_PAGE: '#e6e6e699',
+  NAV_MAIN_PAGE: 'transparent',
+  ITEM_HOVER: '#c8c8c826',
+  HIGHLIGHT: '#590f92'
+};
+
+const FONT_WEIGHT = {
+  NORMAL: 300,
+  BOLD: 700
+};
+
+const HEADER_PROPS = {
+  HEIGHT: '70px',
+  REAL_HEIGHT: '120px',
+  PADDING_VERTICAL: '50px',
+  PADDING_HORIZONTAL: '80px',
+  MARGIN: '120px 0px',
+};
+
+const COMP_PROPS = {
+  ITEM_MIN_HEIGHT: '440px',
+  ITEM_MAX_HEIGHT: '500px',
+  ITEM_MIN_WIDTH: '300px',
+  ITEM_MAX_WIDTH: '300px',
+}
+
+export { COLOR, FONT_WEIGHT, HEADER_PROPS, COMP_PROPS };
