@@ -5,6 +5,7 @@ interface Cocktail {
   img: string;
   alcohol: number;
   ingredients: string;
+  favorite: boolean;
 }
 
 export type { Cocktail };

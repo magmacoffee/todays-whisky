@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Grid, LinearProgress, Skeleton } from '@mui/material';
+import { Grid, LinearProgress, Skeleton,} from '@mui/material';
 
 import API from 'src/apis/api';
 import { COLOR, COMP_PROPS } from 'src/constants/style';
@@ -12,11 +12,12 @@ import { ItemProps } from 'src/components/type';
 const SearchPage = () => {
 
   // for Infinity Scroll & Skeleton loading
+
   const [cocktailList, setCocktailList] = useState([]);
   const [scrollData, setScrollData] = useState([]);
   const [hasMoreValue, setHasMoreValue] = useState(true);
   const [isFetching, setIsFetching] = useState(true);
-
+  
   // for Cocktail detail Modal
   const [open, setOpen] = useState(false);
   const [data, setData] = useState<ItemProps | undefined>();
@@ -90,10 +91,12 @@ const SearchPage = () => {
                 return (
                   <Grid key={index} item>
                     <ItemCard
+                      id={cocktail?.id}
                       title={cocktail?.name}
                       subtitle={`도수 : ${cocktail?.alcohol}`}
                       description={cocktail?.desc}
                       imgUrl={cocktail?.img}
+                      favorite={cocktail?.favorite}
                       onClick={() => {handleClickItemCard(index)}}
                     />
                   </Grid>

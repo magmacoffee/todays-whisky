@@ -6,7 +6,6 @@ import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
 import { COMP_PROPS } from 'src/constants/style';
 
 const CardStyle = {
@@ -15,14 +14,17 @@ const CardStyle = {
 }
 
 interface ItemCardProps {
+  id: string
   title: string;
   subtitle: string;
   description: string;
   imgUrl: string;
+  favorite: boolean;
   onClick?: () => void;
+  onFavClick?: () => void;
 }
 
-const ItemCard = ({title, subtitle, description, imgUrl, onClick} : ItemCardProps) => {
+const ItemCard = ({id, title, subtitle, description, imgUrl, favorite, onClick, onFavClick} : ItemCardProps) => {
 
   return (
     <div>
@@ -44,10 +46,13 @@ const ItemCard = ({title, subtitle, description, imgUrl, onClick} : ItemCardProp
           </CardContent>
           <CardActions disableSpacing>
             <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="share">
-              <ShareIcon />
+              {
+                favorite ? (
+                  <FavoriteIcon onClick={onFavClick} style={{ color: 'red' }} />
+                ) : (
+                  <FavoriteIcon onClick={onFavClick} />
+                )
+              }
             </IconButton>
           </CardActions>
         </Card>
