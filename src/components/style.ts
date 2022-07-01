@@ -23,6 +23,12 @@ const Text = {
   line-height: 30px;
   color: ${({ color }) => color || COLOR.BLACK};
 `,
+  Title: styled.p`
+    font-weight: ${FONT_WEIGHT.BOLD};
+    font-size: 28pt;
+    margin: 3px 0px;
+    color: ${({ color }) => color || COLOR.BLACK};
+  `,
   Description: styled.p`
     width: 100%;
     max-width: 100%;

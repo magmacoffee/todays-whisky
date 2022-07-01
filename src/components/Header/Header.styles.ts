@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { HEADER_PROPS } from 'src/constants/style';  
+import { Link } from 'react-router-dom';
 
 const NavBar = styled.div`
   display: flex;
@@ -20,14 +21,16 @@ const NavBar = styled.div`
   z-index: 30;
 `;
 
-const Button = styled.a`
+const StyledLink = styled(Link)`
   padding: 10px 20px;
   margin: 0 5px;
   cursor: pointer;
-  color: 'black';
+  color: black;
+  text-decoration: none;
   &:hover {
     border-bottom: 1px solid;
   }
 `;
 
-export { NavBar, Button };
+
+export { NavBar, StyledLink };

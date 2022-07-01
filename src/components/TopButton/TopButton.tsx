@@ -8,7 +8,7 @@ interface Props {
 const TopButton = ({ onClick } : Props) => {
   return (
       <a 
-        href='javascript:void(0);' 
+        href='#' 
         onClick={onClick}
         style={{
           color: 'black',

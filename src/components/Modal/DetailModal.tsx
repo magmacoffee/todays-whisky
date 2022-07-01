@@ -21,9 +21,7 @@ const DetailModal = ({ open, onClose, data } : Props) => {
     >
       <Box sx={BoxStyle}>
         <Image src={data?.imgUrl} />
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          <Text.H3>{data?.title}</Text.H3>
-        </Typography>
+        <Text.H3>{data?.title}</Text.H3>
         <Typography>
           {data?.subtitle}
         </Typography>

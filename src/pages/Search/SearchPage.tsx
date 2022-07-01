@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Grid, LinearProgress, Skeleton,} from '@mui/material';
+import { Grid, LinearProgress, Skeleton, ButtonGroup, Button } from '@mui/material';
 
 import API from 'src/apis/api';
 import { COLOR, COMP_PROPS } from 'src/constants/style';
 import { Header, ItemCard, DetailModal } from 'src/components';
-import { Content } from 'src/components/style';
+import { Content, ContentHeader } from './SearchPage.styles';
 import { Cocktail } from 'src/apis/type';
 import { ItemProps } from 'src/components/type';
 
@@ -15,8 +15,10 @@ const SearchPage = () => {
 
   const [cocktailList, setCocktailList] = useState([]);
   const [scrollData, setScrollData] = useState([]);
+  const [sortData, setSortData] = useState([]);
   const [hasMoreValue, setHasMoreValue] = useState(true);
   const [isFetching, setIsFetching] = useState(true);
+  const [sort, setSort] = useState(false);
   
   // for Cocktail detail Modal
   const [open, setOpen] = useState(false);
@@ -73,11 +75,83 @@ const SearchPage = () => {
     }
   };
 
+  const handleFavIconClick = (index: number, id: string) => {
+    API.toggleFavorite(id);
+    fetchCocktailData();
+  };
+
+  const onNameSort = () => {
+    if (scrollData.length > 0) {
+      const ary = scrollData.slice(0, scrollData.length);
+      setSortData(
+        ary.sort(function(a, b) {
+          if (a.name > b.name) {
+            return 1;
+          } else {
+            return -1;
+          }
+          return 0;
+        })
+      );
+      setSort(true);
+    }
+  };
+
+  const onAlcoholSort = () => {
+    if (scrollData.length > 0) {
+      const ary = scrollData.slice(0, scrollData.length);
+      setSortData(
+        ary.sort(function(a, b) {
+          if (a.alcohol > b.alcohol) {
+            return 1;
+          } else {
+            return -1;
+          }
+          return 0;
+        })
+      );
+      setSort(true);
+    }
+    
+  };
+
+  const onClickClear = () => {
+    setSort(false);
+  };
+
   return (
     <>
       <Header backColor={ COLOR.NAV_NORMAL_PAGE } />
+
+      <ContentHeader>
+        <ButtonGroup variant="outlined" aria-label="outlined button group">
+            <Button onClick={onNameSort}>이름</Button>
+            <Button onClick={onAlcoholSort}>도수</Button>
+            <Button onClick={onClickClear}>초기화</Button>
+        </ButtonGroup>
+      </ContentHeader>
+
       <Content>
-        {scrollData ? (
+        {sort ? (
+          <Grid container spacing={3}>
+          {sortData.map((cocktail, index) => {
+            return (
+              <Grid key={index} item>
+                <ItemCard
+                  id={cocktail?.id}
+                  title={cocktail?.name}
+                  subtitle={`도수 : ${cocktail?.alcohol}`}
+                  description={cocktail?.desc}
+                  imgUrl={cocktail?.img}
+                  favorite={cocktail?.favorite}
+                  onClick={() => {handleClickItemCard(index)}}
+                  onFavClick={(e) => { e.stopPropagation(); handleFavIconClick(index, cocktail.id);}}
+                />
+              </Grid>
+            )
+          })}
+        </Grid>
+        ) : (
           <InfiniteScroll
             dataLength={scrollData.length}
             next={handleOnRowsScrollEnd}
@@ -98,14 +172,13 @@ const SearchPage = () => {
                       imgUrl={cocktail?.img}
                       favorite={cocktail?.favorite}
                       onClick={() => {handleClickItemCard(index)}}
+                      onFavClick={(e) => { e.stopPropagation(); handleFavIconClick(index, cocktail.id);}}
                     />
                   </Grid>
                 )
               })}
             </Grid>
           </InfiniteScroll>
-        ) : (
-          <></>
         )}
         {/* Show skeleton when fetching data */}
         {isFetching && 

@@ -1,15 +1,11 @@
 import { Link } from 'react-router-dom';
-import { NavBar, Button } from './Header.styles';
+import { NavBar, StyledLink } from './Header.styles';
 import Logo from 'src/assets/glass-with-wine.png';
 
 interface HeaderProps {
   backColor: string;
 }
 
-const LinkStyle = {
-  textDecoration: 'none',
-  color: 'black'
-};
 
 const Header = ({ backColor = 'transparent' } : HeaderProps) => {
   const navBarStyle = {
@@ -21,12 +17,8 @@ const Header = ({ backColor = 'transparent' } : HeaderProps) => {
         <img src={Logo}/>
       </Link>
       <div style={navBarStyle}>
-        <Link to='/search' style={LinkStyle}>
-          <Button>Search</Button>
-        </Link>
-        <Link to='/about' style={LinkStyle}>
-          <Button>About</Button>
-        </Link>
+          <StyledLink to='/search'>Search</StyledLink>
+          <StyledLink to='/about'>About</StyledLink>
       </div>
     </NavBar>
   );

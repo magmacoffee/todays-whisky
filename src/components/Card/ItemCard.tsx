@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { COMP_PROPS } from 'src/constants/style';
+import { MouseEventHandler } from 'react';
 
 const CardStyle = {
   minHeight: COMP_PROPS.ITEM_MIN_HEIGHT,
@@ -21,7 +22,7 @@ interface ItemCardProps {
   imgUrl: string;
   favorite: boolean;
   onClick?: () => void;
-  onFavClick?: () => void;
+  onFavClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 const ItemCard = ({id, title, subtitle, description, imgUrl, favorite, onClick, onFavClick} : ItemCardProps) => {
@@ -45,12 +46,12 @@ const ItemCard = ({id, title, subtitle, description, imgUrl, favorite, onClick, 
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
+            <IconButton aria-label="add to favorites" onClick={onFavClick}>
               {
                 favorite ? (
-                  <FavoriteIcon onClick={onFavClick} style={{ color: 'red' }} />
+                  <FavoriteIcon  style={{ color: 'red' }} />
                 ) : (
-                  <FavoriteIcon onClick={onFavClick} />
+                  <FavoriteIcon />
                 )
               }
             </IconButton>
