@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { CircularProgress, Grid, LinearProgress, Skeleton } from '@mui/material';
+import { Grid, LinearProgress, Skeleton } from '@mui/material';
 
 import API from 'src/apis/api';
 import { COLOR, COMP_PROPS } from 'src/constants/style';
@@ -21,7 +21,6 @@ const SearchPage = () => {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState<ItemProps | undefined>();
   const handleClose = () => setOpen(false);
-  const handleOpen = () => setOpen(true);
 
   const FETCH_DATA_CNT = 64;
 

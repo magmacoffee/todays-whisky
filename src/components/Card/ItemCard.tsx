@@ -8,9 +8,6 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import { COMP_PROPS } from 'src/constants/style';
-import { useState } from 'react';
-import { ItemProps } from 'src/components/type';
-import DetailModal from 'src/components/Modal/DetailModal';
 
 const CardStyle = {
   minHeight: COMP_PROPS.ITEM_MIN_HEIGHT,
